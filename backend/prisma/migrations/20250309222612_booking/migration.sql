@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Booking" ALTER COLUMN "hotelId" SET DATA TYPE TEXT;
