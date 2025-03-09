@@ -1,0 +1,123 @@
+[
+    {
+      "id": 1,
+      "name": "The Grand Hotel",
+      "location": "Delhi",
+      "price": 5000
+    },
+    {
+      "id": 2,
+      "name": "Beach Resort",
+      "location": "Goa",
+      "price": 7000
+    },
+    {
+      "id": 3,
+      "name": "Mountain Retreat",
+      "location": "Manali",
+      "price": 4500
+    },
+    {
+      "id": 4,
+      "name": "City View Inn",
+      "location": "Mumbai",
+      "price": 6000
+    },
+    {
+      "id": 5,
+      "name": "Royal Heritage Hotel",
+      "location": "Jaipur",
+      "price": 5500
+    },
+    {
+      "id": 6,
+      "name": "Hilltop Paradise",
+      "location": "Shimla",
+      "price": 5000
+    },
+    {
+      "id": 7,
+      "name": "Luxury Bay Hotel",
+      "location": "Kochi",
+      "price": 7500
+    },
+    {
+      "id": 8,
+      "name": "Desert Sands Resort",
+      "location": "Jaisalmer",
+      "price": 6500
+    },
+    {
+      "id": 9,
+      "name": "Riverside Lodge",
+      "location": "Rishikesh",
+      "price": 4800
+    },
+    {
+      "id": 10,
+      "name": "Downtown Suites",
+      "location": "Bangalore",
+      "price": 5800
+    },
+    {
+      "id": 11,
+      "name": "Sunset Boulevard Hotel",
+      "location": "Chennai",
+      "price": 6200
+    },
+    {
+      "id": 12,
+      "name": "Evergreen Stay",
+      "location": "Pune",
+      "price": 5300
+    },
+    {
+      "id": 13,
+      "name": "Lakeside Inn",
+      "location": "Udaipur",
+      "price": 6800
+    },
+    {
+      "id": 14,
+      "name": "Majestic Palace",
+      "location": "Hyderabad",
+      "price": 7100
+    },
+    {
+      "id": 15,
+      "name": "Tranquil Heights",
+      "location": "Darjeeling",
+      "price": 4700
+    },
+    {
+      "id": 16,
+      "name": "Skyline Residency",
+      "location": "Ahmedabad",
+      "price": 5400
+    },
+    {
+      "id": 17,
+      "name": "Golden Sands Hotel",
+      "location": "Pondicherry",
+      "price": 6200
+    },
+    {
+      "id": 18,
+      "name": "Paradise Residency",
+      "location": "Mysore",
+      "price": 5800
+    },
+    {
+      "id": 19,
+      "name": "Green Valley Lodge",
+      "location": "Dehradun",
+      "price": 5600
+    },
+    {
+      "id": 20,
+      "name": "Cloud Nine Resort",
+      "location": "Munnar",
+      "price": 7300
+    }
+  ]
+  
