@@ -10,6 +10,8 @@ app.use(cors({
 }))
 app.use(express.json())
 
+
+//this route is for user registration/signup
 app.post('/signup', async (req, res)=> {
     try {
         const {email, password } = req.body;
@@ -34,7 +36,7 @@ app.post('/signup', async (req, res)=> {
     
 })
 
-
+//this route is for user login
 app.post('/login', async (req, res)=> {
     try {
         const {email, password} = req.body;
@@ -56,7 +58,7 @@ app.post('/login', async (req, res)=> {
     }
 })
 
-
+//this is a dynamic which is for booking of a specific hotelId
 app.post(`/booking/:hotelId`, authenticateToken, async (req,res)=>{
    try {
     const {hotelId} = req.params
@@ -85,3 +87,37 @@ app.post(`/booking/:hotelId`, authenticateToken, async (req,res)=>{
 
 
 app.listen(6000, ()=> {console.log("Server is running on port 6000")})
+
+
+app.post("/webcheckin/:bookingId", authenticateToken, async (req,res)=>{
+    try {
+        const {bookingId} = req.params 
+        const {aadhaarNumbers} = req.body
+
+        const bookingIdNumber = Number(bookingId);
+
+        if(!aadhaarNumbers) return res.status(404).json({message : "Kindly enter the aadhar details"})
+        const booking = await prisma.booking.findUnique({
+            where : {
+                id : bookingIdNumber
+            }
+        })
+        if(!booking) return res.status(404).json({message : "Booking not found"})
+        
+        if(aadhaarNumbers.length!== booking.numberOfPeople){
+            return res.status(404).json({message : "Number of aadhar numbers does not match to the number of people for booking"})
+        }
+
+        const webCheckin = await prisma.webCheckin.create({
+            data : {
+                bookingId : bookingIdNumber,
+                aadhaarNumbers 
+            }
+        })
+        return res.status(200).json({message : "Web checkin has been created successfully"})
+    } catch (error) {
+        console.error(error.message)
+        return res.status(500).json({message : "Internal Server Error"})
+
+    }
+})
