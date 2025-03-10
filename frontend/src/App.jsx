@@ -19,7 +19,7 @@ function App() {
       <Route path="/signup" element={<Signup/>} />
       <Route path="/booking/:id" element={<Booking/>}/>
       <Route path="/webcheckin" element={<ProtectedRoute><WebCheckin/></ProtectedRoute>}/>
-      <Route path="/webcheckin/:id" element={<ProtectedRoute><CheckingIn/></ProtectedRoute>}/>
+      <Route path="/webcheckin/:bookingId" element={<ProtectedRoute><CheckingIn/></ProtectedRoute>}/>
 
      </Routes>
      </BrowserRouter>
