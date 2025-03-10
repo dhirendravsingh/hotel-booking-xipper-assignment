@@ -15,6 +15,7 @@ function App() {
      <BrowserRouter>
      <Routes>
       <Route path="/hotels" element={<ProtectedRoute><Hotels/></ProtectedRoute>} />
+      <Route path="/" element={<Login/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>} />
       <Route path="/booking/:id" element={<Booking/>}/>
