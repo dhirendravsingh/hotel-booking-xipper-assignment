@@ -1,16 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
+import './App.css'
+import Hotels from './pages/Hotels'
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Booking from './pages/booking';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from './components/ProtectedRoutes';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div className='font-bold bg-red-300'>
-        hello
-      </div>
+     <BrowserRouter>
+     <Routes>
+      <Route path="/hotels" element={<ProtectedRoute><Hotels/></ProtectedRoute>} />
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signup" element={<Signup/>} />
+      <Route path="/booking/:id" element={<Booking/>}/>
+     </Routes>
+     </BrowserRouter>
     </>
   )
 }

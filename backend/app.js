@@ -36,6 +36,7 @@ app.post('/signup', async (req, res)=> {
     
 })
 
+
 //this route is for user login
 app.post('/login', async (req, res)=> {
     try {
@@ -57,6 +58,7 @@ app.post('/login', async (req, res)=> {
         return res.status(500).json({message : "Internal Server Error"})
     }
 })
+
 
 //this is a dynamic which is for booking of a specific hotelId
 app.post(`/booking/:hotelId`, authenticateToken, async (req,res)=>{
@@ -86,9 +88,7 @@ app.post(`/booking/:hotelId`, authenticateToken, async (req,res)=>{
 })
 
 
-app.listen(6000, ()=> {console.log("Server is running on port 6000")})
-
-
+//this is also a dynamic route, which will be based on the specific bookingId and is used to do web check in
 app.post("/webcheckin/:bookingId", authenticateToken, async (req,res)=>{
     try {
         const {bookingId} = req.params 
@@ -121,3 +121,6 @@ app.post("/webcheckin/:bookingId", authenticateToken, async (req,res)=>{
 
     }
 })
+
+
+app.listen(3000, ()=> {console.log("Server is running on port 3000")})
