@@ -1,31 +1,47 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 import hotelsData from "../data/hotels.json";
 
 const Booking = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const hotel = hotelsData.find((hotel) => hotel.id.toString() === id);
 
   const [date, setDate] = useState("");
   const [people, setPeople] = useState(1);
   const [error, setError] = useState("");
 
-  const handleBooking = (e) => {
+  const handleBooking = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     if (!date) {
       setError("Please select a booking date.");
       return;
     }
-
+  
     if (people < 1) {
       setError("Number of people must be at least 1.");
       return;
     }
-
-    alert(`Booking confirmed for ${hotel.name} on ${date} for ${people} people!`);
+  
+    try {
+      // Convert date to ISO-8601 format
+      const isoDate = new Date(date).toISOString(); 
+  
+      await axiosInstance.post(`/booking/${id}`, { bookingDate: isoDate, people });
+  
+      alert(`Booking Confirmed!
+        Hotel: ${hotel.name}
+        City: ${hotel.location}
+        Date: ${date}
+        Total Price: ₹${hotel.price * people}`);      navigate("/hotels"); // Redirect to hotels page
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to create booking. Try again.");
+    }
   };
+  
 
   if (!hotel) {
     return <p className="text-center text-red-500">Hotel not found</p>;
