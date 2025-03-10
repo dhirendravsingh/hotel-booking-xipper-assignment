@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
+import BookingCard from "../components/BookingCard";
+import hotelsData from "../data/hotels.json"; // Load hotels data
 
 const WebCheckin = () => {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +12,20 @@ const WebCheckin = () => {
     const fetchBookings = async () => {
       try {
         const response = await axiosInstance.get("/webcheckin");
-        setBookings(response.data); // Assuming response.data is an array of bookings
+        const userBookings = response.data.booking; // Extract bookings array
+
+        // Merge bookings with hotel details
+        const mergedBookings = userBookings.map((booking) => {
+          const hotel = hotelsData.find((hotel) => hotel.id === booking.hotelId);
+          return {
+            ...booking,
+            hotelName: hotel?.name || "Unknown Hotel",
+            city: hotel?.location || "Unknown City",
+            price: hotel?.price || "N/A",
+          };
+        });
+
+        setBookings(mergedBookings);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch bookings.");
       } finally {
@@ -33,12 +48,7 @@ const WebCheckin = () => {
       ) : (
         <div className="grid gap-4">
           {bookings.map((booking) => (
-            <div key={booking.id} className="p-4 bg-white shadow-md rounded-lg">
-              <h2 className="text-lg font-semibold">{booking.hotelName}</h2>
-              <p className="text-gray-600">Location: {booking.location}</p>
-              <p className="text-gray-600">Date: {booking.date}</p>
-              <p className="text-gray-600">People: {booking.people}</p>
-            </div>
+            <BookingCard key={booking.id} booking={booking} />
           ))}
         </div>
       )}

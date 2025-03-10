@@ -88,11 +88,11 @@ app.post(`/booking/:hotelId`, authenticateToken, async (req,res)=>{
 })
 
 //this will be a route on /webcheckin to get all the available booking for the user
-app.get('/webcheckin', authenticateToken, (req,res)=>{
+app.get('/webcheckin', authenticateToken, async (req,res)=>{
     try {
         const userId = req.user.id
         if(!userId) return res.status(404).json({message : "Kindly check for the user"})
-        const booking = prisma.booking.findMany({where : {userId}})
+        const booking = await prisma.booking.findMany({where : {userId}})
         return res.status(200).json({message : "Booking has been retrieved successfully", booking})
     } catch (error) {
         console.error(error.message)
